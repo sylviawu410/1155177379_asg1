@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<!-- I declare that the lab work here submitted is original
+except for source material explicitly acknowledged,
+and that the same or closely related material has not been
+previously submitted for another course.
+I also acknowledge that I am aware of University policy and
+regulations on honesty in academic work, and of the disciplinary
+guidelines and procedures applicable to breaches of such
+policy and regulations, as contained in the website.
+University Guideline on Academic Honesty:
+https://www.cuhk.edu.hk/policy/academichonesty/
+Student Name : WU Mei Yin
+Student ID : 1155177379
+Class/Section : CSCI 2720
+Date : 23/10/2024 -->
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: sans-serif;
+            color: var(--text-default, #000);
+            font-style: normal;
+            font-weight: 400;
+            line-height: 180%;
+            overflow: unset !important;
+        }
+
+        section {
+            background-color: #FFF;
+        }
+
+        .invisibe {
+            display: none !important;
+        }
+
+        .line {
+            height: 1px;
+            width: 100%;
+            background: var(--border-default, #000);
+        }
+
+        .title {
+            /* font-size: 90px; */
+            font-style: normal;
+            font-weight: 600;
+            line-height: 110%;
+            text-transform: uppercase;
+        }
+
+        .scroll-container {
+            overflow: hidden;
+            padding: 10px;
+            border-top: 1px solid var(--Dark-12, #1C1C21);
+            border-bottom: 1px solid var(--Dark-12, #1C1C21);
+            background: var(--Dark-06, #0E0E10);
+
+        }
+
+        .scroll-text {
+            color: var(--text-inverse, #FFF) !important;
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            -moz-transform: translateX(100%);
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+
+            -moz-animation: my-animation 15s linear infinite;
+            -webkit-animation: my-animation 15s linear infinite;
+            animation: my-animation 15s linear infinite;
+        }
+
+        .scroll-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .scroll-item span {
+            color: var(--text-inverse, #FFF) !important;
+            text-align: center;
+        }
+
+        @keyframes my-animation {
+            from {
+                -moz-transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+                transform: translateX(100%);
+            }
+
+            to {
+                -moz-transform: translateX(100%);
+                -webkit-transform: translateX(100%);
+                transform: translateX(-100%);
+            }
+
+        }
+
+        #c1, #c2, #c3, #c4{
+            margin-top: 10px;
+        }
+
+        .text {
+            color: var(--text-default, #000);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 120%;
+            align-self: stretch;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 120%;
+            /* 38.4px */
+        }
+
+        .comment-icon {
+            max-width: 150px;
+            max-height: 150px;
+            height: fit-content;
+        
+            border-radius: 1000px;
+        }
+
+
+        .sticky {
+            position: sticky !important;
+            top: 400px !important;
+        }
+
+        p,
+        span {
+            color: #000000d7;
+            margin: 0;
+        }
+
+        #spotlights p {
+            margin-left: 10px;
+        }
+
+        .mobile{
+            display: none;
+        }
+        @media screen and (max-width: 768px) {
+            h2 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 24px;
+            }
+
+            .text {
+                margin-top: 25px;
+            }
+
+
+            #alignBtn,
+            #spotlightBtn,
+            #toastBtn {
+                margin-bottom: 10px;
+            }
+
+            #alignBtn {
+                margin-top: 10px;
+            }
+
+            .mobile{
+                display: block;
+                margin-top: 25px;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+
+            #alignBtn,
+            #spotlightBtn,
+            #toastBtn {
+                margin-bottom: 10px;
+            }
+
+            #alignBtn {
+                margin-top: 10px;
+            }
+
+            svg{
+                width:fit-content !important;
+                margin-right: 15px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg mt-4 ">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="./images/Fyrre Magazine.svg" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#introduction">Introduction</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#spotlights">Spotlights</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#comments">Comments</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="dynamicBar" class="collapse navbar-collapse invisible">
+                    <ul class="navbar-nav">
+                        <li class="nav-item" style="margin-right:5px">
+                            <button id="alignBtn" type="button" class="btn btn-outline-secondary">Task1: Align</button>
+                        </li>
+                        <li class="nav-item" style="margin-right:5px">
+                            <button id="spotlightBtn" type="button" class="btn btn-outline-secondary">Task2:
+                                Spotlight</button>
+                        </li>
+                        <li class="nav-item" style="margin-right:5px">
+                            <button id="toastBtn" type="button" class="btn btn-outline-secondary">Task3: Bootstrap
+                                Toast</button>
+                        </li>
+                    </ul>
+                </div>
+                <button id="toggleDynamicBar" class="btn btn-dark">Show</button>
+
+            </div>
+        </nav>
+        <div class="container">
+            <div class="line "></div>
+        </div>
+
+        <div class="container mt-5">
+            <img class="img-fluid" src="./images/Art & Life.svg">
+        </div>
+    </header>
+    <div class="container">
+        <div class="scroll-container  mt-5">
+            <div class="scroll-text">
+                <div class="scroll-item">
+                    <span>Lorem ipsum dolor </span>
+                </div>
+                <div class="scroll-item">
+                    <span>Lorem ipsum dolo+</span>
+                </div>
+                <div class="scroll-item">
+                    <span>Lorem ipsum det +++</span>
+                </div>
+                <div class="scroll-item">
+                    <span>Lorem sit amet +++</span>
+                </div>
+                <div class="scroll-item">
+                    <span>Lorem ipsum dolo++</span>
+                </div>
+                <div class="scroll-item">
+                    <span>Lorem ipsuamet +++</span>
+                </div>
+            </div>
+        </div>
+        <main>
+            <div class=" mt-5" id="introduction">
+                <div class="row mt-5 pt-2">
+                    <h1 class="col-md-6 title display-1">Don’t close your eyes</h1>
+                    <div class="col-md-6">
+                        <div class="row mt-2">
+                            <p class="col-12">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut
+                                labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem. Cras ornare arcu
+                                dui
+                                vivamus arcu felis bibendum ut. Porttitor leo a diam.
+                            </p>
+                            <div class="col-12 mt-5 pt-2">
+                                <span><strong>Text</strong></span>
+                                <span style="margin-left: 5px;">Sylvia Wu</span>
+                                <span style="margin-left: 15px;"><strong>Date</strong></span>
+                                <span style="margin-left: 5px;">23 OCT 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img class="img-fluid mt-5 " src="./images/dimitar-belchev-fRBpWLAcWIY-unsplash 1.png">
+
+            </div>
+        </main>
+
+        <div class="row mt-4 justify-content-between">
+            <div class="col-md-8 row">
+                <div class="col-12">
+                    <h1 id="comments" class="title display-1 mb-5 pt-2">Comments</h1>
+                    <section id="comment-wrapper" class="row justify-content-around " style="background-color: #FFF;">
+                        <img class="col-2 comment-icon img-fluid p-0" src="./images/image (3).png">
+                        <div class="row col-9">
+                            <h3 class="col comment-header">Jakob Grønberg</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Egestas dui id ornare arcu odio ut sem.
+                                Cras ornare arcu dui vivamus arcu felis bibendum ut. Porttitor leo a diam.</p>
+
+                            <div class="col-12 mt-1">
+                                <span><strong>Email</strong></span>
+                                <span style="margin-left: 15px;">xxx@gmail.com</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="line my-5"></div>
+                    <form class="needs-validation" novalidate onsubmit="event.preventDefault(); formOperation();">
+                        <h3>What do you think?</h3>
+                        <div>
+                            <label for="emailInput" class="form-label needs-validation">Email
+                                </label>
+                            <input type="email" class="form-control" id="emailInput"
+                                placeholder="name@example.com" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                  </div>
+                                  <div class="invalid-feedback">
+                                    Please enter a valid email address.
+                                  </div>
+                        </div>
+                        <div>
+                            <label for="commentInput" class="form-label mt-3">Comment</label>
+                            <textarea class="form-control" id="commentInput" rows="3"
+                                required></textarea>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                  </div>
+                                  <div class="invalid-feedback">
+                                    Please enter a comment.
+                                  </div>
+                        </div>
+
+
+                        <div class="mt-4 mb-3" style="display: flex;gap:15px;">
+                            <div class="form-check ">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Red
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Green
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    Yellow
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault4">
+                                <label class="form-check-label" for="flexRadioDefault4">
+                                    Blue
+                                </label>
+                            </div>
+
+                        </div>
+                        <button id="formBtn" class="btn btn-dark" type="submit" onclick="formOperation()">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="line mobile"></div>
+            <aside class="col-md-4 mt-2  row align-content-start">
+                <div class="text"><strong>Printmagazine</strong></div>
+                <h2>03/2022</h2>
+                <img class="mt-3 img-fluid" src="./images/magazin-cover.png">
+                <div class="sticky-top" id="spotlights">
+                    <section>
+                        <h3 class="mt-4">Spotlights</h3>
+                    </section>
+                </div>
+
+            </aside>
+
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Clock</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastBody"></div>
+        </div>
+    </div>
+    <div class="scroll-container  mt-5">
+        <div class="scroll-text">
+            <div class="scroll-item">
+                <span>Lorem ipsum dolor </span>
+            </div>
+            <div class="scroll-item">
+                <span>Lorem ipsum dolo+</span>
+            </div>
+            <div class="scroll-item">
+                <span>Lorem ipsum det +++</span>
+            </div>
+            <div class="scroll-item">
+                <span>Lorem sit amet +++</span>
+            </div>
+            <div class="scroll-item">
+                <span>Lorem ipsum dolo++</span>
+            </div>
+            <div class="scroll-item">
+                <span>Lorem ipsuamet +++</span>
+            </div>
+        </div>
+    </div>
+    <footer class="text-white text-center text-lg-start bg-black">
+        <div class="text-center">Made by Sylvia</div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
